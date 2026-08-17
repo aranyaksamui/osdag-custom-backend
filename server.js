@@ -1,0 +1,1 @@
+console.log("OSDAG AUTH SYSTEM PROJECT SETUP DONE");
