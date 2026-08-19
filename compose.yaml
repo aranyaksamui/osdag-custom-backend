@@ -28,7 +28,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
-    command: sh -c "npx prisma db push && npm run dev"
+    command: sh -c "npx prisma generate && npx prisma db push && npm run dev"
     depends_on:
       database:
         condition: service_healthy

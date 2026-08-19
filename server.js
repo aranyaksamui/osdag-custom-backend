@@ -3,8 +3,8 @@ import express from "express";
 import cors from "cors";
 import session from "express-session";
 import { PrismaSessionStore } from "@quixo3/prisma-session-store";
-import userRoutes from "./routes/user_routes";
-import db from "./database/db";
+import userRoutes from "./routes/user_routes.js";
+import db from "./database/db.js";
 
 dotenv.config();
 const app = express();
