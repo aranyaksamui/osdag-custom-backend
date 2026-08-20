@@ -87,3 +87,23 @@ export const userMe = async (req, res) => {
         return res.status(500).json({ error: "Internal Server Error" });
     }
 }
+
+// Logout a user
+export const userLogout = async (req, res) => {
+    try {
+        req.session.destroy((err) => {
+            if (err) throw new AppError("Could not logout.");
+
+            res.clearCookie("connect.sid");
+            res.status(200).json({ message: "Logged out." });
+        })
+    }
+    catch (error) 
+    {
+        if (error instanceof AppError) return res.status(error.statusCode).json({ error: error.message });
+
+        console.log(error);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+
+}
