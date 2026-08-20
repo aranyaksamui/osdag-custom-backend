@@ -1,5 +1,5 @@
 import validator from "validator";
-
+import { ValidationError } from "./errors.js";
 
 // Validate and clean up email input
 export const sanitizeEmail = (email) => {
@@ -12,5 +12,5 @@ export const sanitizeEmail = (email) => {
     // Validate final output
     if (cleanEmail && validator.isEmail(cleanEmail)) return cleanEmail;
 
-    throw new Error("Invalid email provided.");
+    throw new ValidationError("Invalid email provided.");
 }
