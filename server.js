@@ -4,11 +4,12 @@ import cors from "cors";
 import session from "express-session";
 import { PrismaSessionStore } from "@quixo3/prisma-session-store";
 import userRoutes from "./routes/user_routes.js";
+import fileRoutes from "./routes/file_routes.js";
 import db from "./database/db.js";
 
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 
 // Cors and Session setup
 app.use(cors({ origin: (origin, callback) => callback(null, true), credentials: true }));
@@ -31,8 +32,8 @@ app.use(session({
 }));
 
 // Routers setup
-app.use("/api/users", userRoutes);
-// app.use("/api/files", fileRoutes);
+app.use("/", userRoutes);
+app.use("/files", fileRoutes);
 
 // Listen on PORT
 app.listen(PORT, () => {

@@ -1,6 +1,6 @@
-import db from "../database/db.js";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
+import db from "../database/db.js";
 import { sanitizeEmail } from "../utils/input_sanitizer.js";
 import { AppError, AuthError, ValidationError } from "../utils/errors.js";
 

@@ -16,14 +16,14 @@ model User {
 }
 
 model File {
-    id          String   @id
-    fileName    String
-    fileOwnerId     String @map("ownerId")
-    mimeType    String
-    sizeInBytes Int
-    uploadedAt  DateTime @default(now())
+    id         String   @id
+    fileName   String
+    ownerId    String
+    mimeType   String
+    sizeBytes  Int
+    uploadedAt DateTime @default(now())
 
-    fileOwner User? @relation(fields: [fileOwnerId], references: [id], onDelete: Cascade)
+    owner User? @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 }
 
 model Session {

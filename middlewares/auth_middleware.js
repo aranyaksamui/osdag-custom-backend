@@ -8,7 +8,7 @@ export const limitLogin = rateLimit({
 });
 
 // Check for user logged in state
-export const requireAuth = (req, res, next) => {
+export const requiresAuth = (req, res, next) => {
     if (!req.session.userId) return res.status(401).json({ error: "Not authenticated." });
 
     next();
