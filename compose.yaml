@@ -1,7 +1,7 @@
 name: osdag-secure-auth-system
 
 services:
-  # Database
+  # Database service
   database:
     image: postgres:16-alpine
     env_file:
@@ -16,19 +16,36 @@ services:
       timeout: 5s
       retries: 5
     
-  # Backend
+  # Backend service
   backend:
     build:
       context: .
       dockerfile: Dockerfile.dev
     ports:
-      - "8000:8000"
+      - "3000:3000"
     env_file:
       - .env
     volumes:
       - .:/app
       - /app/node_modules
     command: sh -c "npx prisma generate && npx prisma db push && npm run dev"
+    depends_on:
+      database:
+        condition: service_healthy
+
+  # Prisma studio for database visualization
+  prisma-studio:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5555:5555"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: sh -c "npx prisma studio --port 5555 --browser none"
     depends_on:
       database:
         condition: service_healthy
