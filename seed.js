@@ -43,7 +43,7 @@ const seed = async () => {
                 });
             }
 
-            console.log(`Seed User: ${seededUser.email} with ${seedUser.files.length} files!`);
+            console.log(`Seed User: ${seededUser.email} with ${seedUser.files.length} files.`);
         }
         console.log("\n");
         console.log("Database SEED complete.");
